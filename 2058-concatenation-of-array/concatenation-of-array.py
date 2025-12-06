@@ -15,14 +15,23 @@ class Solution:
         We loop twice. i == 2n: i % n == 0 -> 2n / n = 1 remainder 0
         and so forth
         This is how we will increment j
+
+    With this, we can find a better approach
+
+    ans[i] = nums[i % n] -> There will always be n remainders
+    from 0 -> n-1, which is exactly the indexes we want
+
+
+    Since we are iterating through the array 2 times our time complexity is
+        O(2 * n) -> O(n)
+        In general it is O(m * n), where m is the number of times we iterate through the array
+        The space complexity is O(n), since we ans will grow with input
+        Hence if input is 2n ans = 4n
         """
         x: int = 2
-        j: int = 0
         ans: List[int] = []
         for i in range(len(nums) * x):
-            ans.append(nums[i - (j * len(nums))])
-            if(i % len(nums) == 0):
-                j+= 1
+            ans.append(nums[i % len(nums)])
 
         return ans
         
